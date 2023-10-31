@@ -1,6 +1,7 @@
 package com.example.caching.service;
 
 import com.example.caching.model.MyRecord;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -22,4 +23,9 @@ public class HighloadService {
 		return new MyRecord(recordId, LocalTime.now());
 	}
 
+	@CacheEvict(cacheNames = {"recordsCache"}, key = "#recordId")
+	public void deleteRecord(int recordId){
+		//delete object
+		return;
+	}
 }
